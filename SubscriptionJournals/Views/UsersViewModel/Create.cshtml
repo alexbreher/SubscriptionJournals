@@ -1,0 +1,56 @@
+﻿@model SubscriptionJournals.Models.UsersViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Forms.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+    <div class="col-lg-7">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+            </div>
+            <form asp-action="Create" class="user">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text" asp-for="name" class="form-control form-control-user" placeholder="First Name" />
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" asp-for="lastName" class="form-control form-control-user" placeholder="Last Name" />
+                        <span asp-validation-for="lastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" asp-for="email" class="form-control form-control-user" placeholder="Email Address" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text" asp-for="user" class="form-control form-control-user" placeholder="User Name (Alias)" />
+                        <span asp-validation-for="user" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="password" asp-for="Password" class="form-control form-control-user" placeholder="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <input type="submit" value="Create" class="btn btn-primary btn-user btn-block" />
+                <hr>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a class="small" href="login.html">Already have an account? Login!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

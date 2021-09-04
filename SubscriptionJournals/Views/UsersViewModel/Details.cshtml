@@ -1,0 +1,61 @@
+﻿@model SubscriptionJournals.Models.UsersViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Forms.cshtml";
+}
+
+<h1>@Html.DisplayFor(model => model.user)</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.followers)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.followers)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.following)
+        </dt>
+        <dd class = "col-sm-4">
+            @Html.DisplayFor(model => model.following)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.journalsPublished)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.journalsPublished)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.user_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

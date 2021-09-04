@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SubscriptionJournals.Models.UsersViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Tables.cshtml";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.user)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.token)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.followers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.following)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.journalsPublished)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.user)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.token)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.followers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.following)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.journalsPublished)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.user_Id">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.user_Id">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.user_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

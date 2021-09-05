@@ -35,18 +35,18 @@
                         @Html.DisplayFor(modelItem => item.creationDate)
                     </td>
                     <td>
-                        <a asp-action="DetailsForUsers" asp-controller="UsersViewModel" asp-route-id="@item.Users.user_Id" class="btn btn-outline-primary">@Html.DisplayFor(modelItem => item.Users.user)</a> &nbsp;                        
+                        <a asp-action="DetailsForUsers" asp-controller="UsersViewModel" asp-route-id="@item.Users.user_Id" class="btn btn-outline-primary">@Html.DisplayFor(modelItem => item.Users.user)</a> &nbsp;
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@item.journal_Id" class="btn btn-outline-info">Ver PDF</a> &nbsp;
                         <a asp-action="Delete" asp-route-id="@item.journal_Id" class="btn btn-outline-danger">Delete</a> &nbsp;
-                        
+
 
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-   
+
 </div>
-    
+

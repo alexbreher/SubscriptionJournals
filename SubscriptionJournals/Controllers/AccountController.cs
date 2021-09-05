@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SubscriptionJournals.Models;
 using SubscriptionJournals.Tools;
 using System;
@@ -18,12 +20,6 @@ namespace SubscriptionJournals.Controllers
             _context = context;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {            
-            return RedirectToAction("Login", "Account");
-        }
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -33,14 +29,20 @@ namespace SubscriptionJournals.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password, LogInViewModel model)
         {
+            DeleteCookies();
+            HttpContext.Session.Clear();
             if (ModelState.IsValid)
             {
                 model.Password = HashPassword.HashPass(model.Password);
-                var validate =  _context.Users.Where(x => x.email == email).Select(x => x.Password).FirstOrDefault();
+                var validate =  await _context.Users.Where(x => x.email == email).Select(x => x.Password).FirstOrDefaultAsync();
                 if (validate == model.Password)
                 {
-                    Notify("Success", "Welcome Back!, Log In Successfully!", notificationType: Notifications.NotificationType.success);
-                    return RedirectToAction("index", "home");
+                    //Notify("Success", "Welcome Back!, Log In Successfully!", notificationType: Notifications.NotificationType.success);
+                    var id = await _context.Users.Where(x => x.email == email).Select(x => x.user_Id).FirstOrDefaultAsync();
+                    var user = await _context.Users.Where(x => x.email == email).Select(x => x.user).FirstOrDefaultAsync();
+                    HttpContext.Session.SetInt32("Id",id);                    
+                    HttpContext.Session.SetString("UserName",user);                    
+                    return RedirectToAction("index", "JournalsViewModel");
                 }
                 else
                 {

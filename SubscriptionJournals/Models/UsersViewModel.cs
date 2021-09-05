@@ -62,5 +62,8 @@ namespace SubscriptionJournals.Models
         public string NewPassword { get; set; }
         public List<JournalsViewModel> Journals { get; set; }
         public List<SubscriptionsViewModel> Subscriptions { get; set; }
+
+        [NotMapped]
+        public bool subscribedFlag { get; set; }
     }
 }

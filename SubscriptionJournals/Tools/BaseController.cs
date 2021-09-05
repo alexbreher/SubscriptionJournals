@@ -12,7 +12,7 @@ namespace SubscriptionJournals.Tools
     public class BaseController: Controller
     {
         public void Notify(string message, string title,
-            Notifications.NotificationType notificationType = Notifications.NotificationType.success)
+             Notifications.NotificationType notificationType = Notifications.NotificationType.success)
         {
             var msg = new
             {
@@ -36,6 +36,13 @@ namespace SubscriptionJournals.Tools
 
             var value = configuration["NotificationProvider"];
             return value;
+        }
+        public void DeleteCookies()
+        {
+            foreach (var cookie in HttpContext.Request.Cookies)
+            {
+                Response.Cookies.Delete(cookie.Key);
+            }
         }
     }
 }

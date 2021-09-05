@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Forms.cshtml";
 }
 
-<h1>Create</h1>
+<title>Create Journal</title>
 
 <h4>JournalsViewModel</h4>
 <hr />
@@ -18,14 +18,16 @@
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="author" class="control-label"></label>
                 <select asp-for="author" class="form-control" asp-items="ViewBag.author"></select>
-            </div>
+            </div>*@
             <div class="custom-file">
             <input asp-for="pdf" class="form-control custom-file-input" />
             <label class="custom-file-label">Choose File...</label>
                 </div>
+            <br />
+            <br />
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
@@ -44,6 +46,6 @@
 }
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-outline-warning">Go to Home</a>
 </div>
 

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Forms.cshtml";
     var pdf = "~/Journals/" + (Model.path ?? "");
 }
-
+<title>PDF File Info</title>
 <h1>PDF File</h1>
 
 <div>
@@ -33,15 +33,11 @@
             @Html.DisplayNameFor(model => model.Users)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Users.name)
+            @Html.DisplayFor(model => model.Users.user)
         </dd>
         <a data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-user btn-block">Read PDF</a>
     </dl>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,8 +60,4 @@
                 </div>
             </div>
     </div>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.journal_Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

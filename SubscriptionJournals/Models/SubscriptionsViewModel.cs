@@ -20,6 +20,7 @@ namespace SubscriptionJournals.Models
 
         [ForeignKey("subscribesTo")]
         public UsersViewModel Users { get; set; }
+        
     }
     
 }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SubscriptionJournals.Models.SubscriptionsViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Tables.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.subscriptor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subscriptionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.subscriptor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subscriptionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Password)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.subscription_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.subscription_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.subscription_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

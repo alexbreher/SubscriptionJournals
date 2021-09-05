@@ -119,17 +119,7 @@ namespace SubscriptionJournals.Controllers
         // GET: UsersViewModel/Create
         public IActionResult Create()
         {
-            int id_user = Convert.ToInt32(HttpContext.Session.GetInt32("Id"));
-            if(id_user != 0)
-            {
                 return View();
-            }
-            else
-            {
-                DeleteCookies();
-                HttpContext.Session.Clear();
-                return RedirectToAction("Login", "Account");
-            }
         }
 
         // POST: UsersViewModel/Create
@@ -158,7 +148,7 @@ namespace SubscriptionJournals.Controllers
                     //get the id from current user registered
                     var id = await _context.Users.Where(x => x.user == user).Select(x => x.user_Id).FirstOrDefaultAsync();
                     //return RedirectToAction("Edit", new { id = id });
-                return RedirectToAction("Login", "AccountController");
+                return RedirectToAction("Login", "Account");
                 }
                 return View(usersViewModel);
             
@@ -197,7 +187,7 @@ namespace SubscriptionJournals.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string token, DateTime creationDate, string Password, [Bind("user_Id,user,name,Password,lastName,email,token,creationDate,followers,following,journalsPublished")] UsersViewModel usersViewModel)
+        public async Task<IActionResult> Edit(int id, string token, DateTime creationDate, string Password, [Bind("user_Id,user,Password,name,lastName,email,token,creationDate,followers,following,journalsPublished,NewPassword")] UsersViewModel usersViewModel)
         {
             int id_user = Convert.ToInt32(HttpContext.Session.GetInt32("Id"));
             if(id_user != 0)
@@ -220,7 +210,7 @@ namespace SubscriptionJournals.Controllers
                                 _context.Update(usersViewModel);
                                 await _context.SaveChangesAsync();
                                 Notify("Success", "User Update Success", notificationType: Notifications.NotificationType.success);
-                                return RedirectToAction("Index", "Home");
+                                return RedirectToAction("Index", "JournalsViewModel");
                             }
                             else
                             {
@@ -237,7 +227,7 @@ namespace SubscriptionJournals.Controllers
                             _context.Update(usersViewModel);
                             await _context.SaveChangesAsync();
                             //Notify("Success", "User Update data Success", notificationType: Notifications.NotificationType.success);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "JournalsViewModel");
                         }
                     }
                     catch (DbUpdateConcurrencyException)
